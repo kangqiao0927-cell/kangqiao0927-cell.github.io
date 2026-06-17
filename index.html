@@ -134,7 +134,7 @@
   <section id="hero">
     <div class="container">
       <h1>嘿，我是黄康桥 👋</h1>
-      <p class="tagline">这里是你的个人介绍，一句话概括你是谁、做什么。</p>
+      <p class="tagline">水资源工程研究者 · 爱好写代码与生成地图</p>
       <div class="social-links">
         <a href="https://github.com/kangqiao0927-cell" target="_blank">GitHub</a>
         <a href="mailto:kangqiao0927@gmail.com">Email</a>
@@ -147,8 +147,9 @@
   <section id="about">
     <div class="container">
       <h2 class="section-title">关于我</h2>
-      <p>在这里写一段自我介绍。可以聊聊你的背景、兴趣、目前在做什么、以及你擅长什么。</p>
-      <p>这是第二段。可以继续补充更多信息，比如教育经历、工作经历、或者业余爱好。</p>
+      <p>我是一名水资源工程方向的研究生，研究方向聚焦于<strong>灌区水资源优化配置与调度</strong>。日常工作围绕分布鲁棒优化（DRO）、模型预测控制（MPC）和随机水文模拟展开，致力于在气候变化与不确定性下为灌溉系统寻找稳健的决策方案。</p>
+      <p>技术上常用 Python 科学计算栈（NumPy、SciPy、Pandas、CVXPY）做建模与优化，用 Scikit-learn 和 TensorFlow 处理水文预测与天气生成，用 QGIS 和 ERA5 再分析数据做空间分析与制图。习惯在 Jupyter Notebook 中完成从数据下载到结果可视化的全流程。</p>
+      <p>研究之余，也在折腾一个叫 <a href="https://github.com/kangqiao0927-cell" target="_blank">Earth Online</a> 的副项目——用程序化生成模拟板块构造、气候、洋流与生物群落，画一些幻想风格的地图。这件事让我保持对编程和可视化的热情。</p>
     </div>
   </section>
 
@@ -159,17 +160,24 @@
       <p class="section-subtitle">做过的一些东西，持续更新中。</p>
       <div class="project-grid">
         <div class="project-card">
-          <h3>项目名称</h3>
-          <p>简短描述这个项目是做什么的、解决了什么问题。</p>
+          <h3>灌区优化调度 — DRO 三层决策框架</h3>
+          <p>面向淠史杭灌区构建 Wasserstein-DRO + CVaR 作物结构优化 → 水权分配 → MPC 滚动灌溉调度的三层框架，在气候变化不确定性下寻求稳健用水策略。</p>
           <div class="tags">
-            <span>Python</span><span>数据分析</span>
+            <span>DRO</span><span>CVaR</span><span>MPC</span><span>Python</span><span>CVXPY</span>
           </div>
         </div>
         <div class="project-card">
-          <h3>项目名称</h3>
-          <p>简短描述这个项目是做什么的、解决了什么问题。</p>
+          <h3>水库价值估计 — Lund 对冲规则</h3>
+          <p>基于 ERA5 水文数据，利用随机森林入流预测与 Lund 对冲规则，构建水库蓄水的经济价值曲线 EV(S)，量化灌区缺水的经济损失。</p>
           <div class="tags">
-            <span>Streamlit</span><span>可视化</span>
+            <span>ERA5</span><span>Random Forest</span><span>Lund Hedging</span><span>Jupyter</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <h3>随机天气生成器 — ResDDPM</h3>
+          <p>融合 SARIMA、跳跃扩散与残差去噪扩散概率模型（ResDDPM），生成未来气候情景（2020-2070）的日尺度天气序列，用于驱动水文模拟。</p>
+          <div class="tags">
+            <span>ResDDPM</span><span>SARIMA</span><span>TensorFlow</span><span>Keras</span>
           </div>
         </div>
       </div>
