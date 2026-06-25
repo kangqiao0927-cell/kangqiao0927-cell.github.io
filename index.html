@@ -39,19 +39,40 @@
     /* === 左侧导航 === */
     .sidebar {
       position: fixed; top: 0; left: 0; bottom: 0;
-      width: 200px;
-      display: flex; flex-direction: column; justify-content: space-between;
-      padding: 48px 40px;
+      width: 220px;
+      display: flex; flex-direction: column;
+      padding: 40px 32px 32px;
       z-index: 100;
       background: var(--bg-sidebar);
       border-right: 1px solid var(--border-light);
     }
-    .sidebar .logo {
-      font-size: 22px; font-weight: 700; letter-spacing: -0.5px;
-      color: var(--text);
+
+    /* 头像 + 名字 + 简介：紧凑叠放 */
+    .sidebar-profile { flex-shrink: 0; }
+
+    .sidebar .avatar img {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--border-light);
+      display: block;
     }
+    .sidebar .logo {
+      margin-top: 10px;
+      font-size: 20px; font-weight: 700; letter-spacing: -0.5px;
+      color: var(--text);
+      line-height: 1.2;
+    }
+    .sidebar .bio-tag {
+      margin-top: 4px;
+      font-size: 12px; color: var(--accent); font-weight: 500;
+      letter-spacing: 0.2px;
+    }
+
     .sidebar .nav-list {
       list-style: none; display: flex; flex-direction: column; gap: 6px;
+      margin-top: 52px;
+      flex: 1;
     }
     .sidebar .nav-list li { position: relative; }
     .sidebar .nav-list a {
@@ -67,20 +88,11 @@
       background: var(--border); transition: all 0.2s;
     }
     .sidebar .nav-list a.active .line { width: 48px; background: var(--accent); }
-    .sidebar .avatar img {
-      width: 64px; height: 64px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--border-light);
-    }
-    .sidebar .logo { margin-top: 12px; }
-    .sidebar .bio {
-      margin-top: 2px;
-      font-size: 12px; color: var(--text-subtle);
-      line-height: 1.5;
-    }
     .sidebar .socials {
       display: flex; flex-direction: column; gap: 8px;
+      margin-top: auto;
+      flex-shrink: 0;
+      padding-top: 16px;
     }
     .sidebar .socials a {
       font-size: 13px; color: var(--text-subtle); transition: color 0.2s;
@@ -89,7 +101,7 @@
 
     /* === 主内容区 === */
     .main {
-      margin-left: 200px;
+      margin-left: 220px;
       max-width: 680px;
       padding: 0 40px 80px;
     }
@@ -221,7 +233,11 @@
         border-right: none;
         border-bottom: 1px solid var(--border-light);
       }
-      .sidebar .nav-list { flex-direction: row; gap: 16px; }
+      .sidebar .nav-list { flex-direction: row; gap: 16px; margin-top: 0; flex: none; }
+      .sidebar .sidebar-profile .avatar,
+      .sidebar .sidebar-profile .bio-tag { display: none; }
+      .sidebar .sidebar-profile .logo { margin-top: 0; font-size: 18px; margin-right: 12px; }
+      .sidebar .sidebar-profile { display: flex; align-items: center; flex-shrink: 0; }
       .sidebar .nav-list a .num { display: none; }
       .sidebar .nav-list a .line { display: none; }
       .sidebar .socials { display: none; }
@@ -236,11 +252,13 @@
 
   <!-- 左侧导航 -->
   <nav class="sidebar">
-    <div class="avatar">
-      <img src="弥豆子.jpg" alt="头像" />
+    <div class="sidebar-profile">
+      <div class="avatar">
+        <img src="弥豆子.jpg" alt="黄康桥头像" />
+      </div>
+      <div class="logo">黄康桥</div>
+      <div class="bio-tag">水资源工程</div>
     </div>
-    <div class="logo">黄康桥</div>
-    <div class="bio">水资源工程 · DRO/MPC</div>
     <ul class="nav-list">
       <li><a href="#about" data-section="about"><span class="num">01</span><span class="line"></span>关于</a></li>
       <li><a href="#education" data-section="education"><span class="num">02</span><span class="line"></span>学历</a></li>
