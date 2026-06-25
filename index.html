@@ -7,11 +7,11 @@
   <style>
     /* === 全局 === */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; background: #f7f5f0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "PingFang SC", sans-serif;
       color: #1a1a1a;
-      background: #fafaf8;
+      background: #f7f5f0;
       line-height: 1.75;
       -webkit-font-smoothing: antialiased;
     }
@@ -25,6 +25,7 @@
       display: flex; flex-direction: column; justify-content: space-between;
       padding: 48px 40px;
       z-index: 100;
+      background: #f7f5f0;
     }
     .sidebar .logo {
       font-size: 22px; font-weight: 700; letter-spacing: -0.5px;
@@ -86,7 +87,7 @@
       transition: all 0.2s;
     }
     #hero .hero-links a:hover {
-      background: #1c1917; color: #fafaf8; border-color: #1c1917;
+      background: #1c1917; color: #f7f5f0; border-color: #1c1917;
       text-decoration: none;
     }
 
@@ -96,7 +97,7 @@
 
     /* === 学历（紧凑卡片） === */
     .edu-card {
-      padding: 20px 24px; background: #f3f0eb; border-radius: 10px; max-width: 480px;
+      padding: 20px 24px; background: #eeebe4; border-radius: 10px; max-width: 480px;
     }
     .edu-card .school { font-weight: 600; font-size: 16px; margin-bottom: 2px; }
     .edu-card .degree { color: #78716c; font-size: 14px; margin-bottom: 4px; }
@@ -106,7 +107,7 @@
     .skill-list { display: flex; flex-wrap: wrap; gap: 10px; max-width: 540px; }
     .skill-tag {
       font-size: 13px; padding: 7px 16px;
-      background: #f3f0eb; border-radius: 20px; color: #44403c;
+      background: #eeebe4; border-radius: 20px; color: #44403c;
       font-weight: 500;
     }
 
@@ -126,7 +127,7 @@
     .project-card .tags { display: flex; gap: 8px; flex-wrap: wrap; }
     .project-card .tags span {
       font-size: 11px; padding: 3px 10px;
-      background: #f3f0eb; border-radius: 10px; color: #78716c;
+      background: #eeebe4; border-radius: 10px; color: #78716c;
       letter-spacing: 0.3px;
     }
 
@@ -300,27 +301,29 @@
   </main>
 
   <script>
-    /* === Scroll Spy === */
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.sidebar .nav-list a');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('data-section') === entry.target.id);
-          });
-        }
-      });
-    }, { rootMargin: '-50% 0px -45% 0px' });
+    (function() {
+      /* === Scroll Spy === */
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.sidebar .nav-list a');
+      const spyObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navLinks.forEach(link => {
+              link.classList.toggle('active', link.getAttribute('data-section') === entry.target.id);
+            });
+          }
+        });
+      }, { rootMargin: '-50% 0px -45% 0px' });
 
-    sections.forEach(s => observer.observe(s));
+      sections.forEach(s => spyObserver.observe(s));
 
-    /* === Fade-in on scroll === */
-    const faders = document.querySelectorAll('.fade-in');
-    const fadeObserver = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); } });
-    }, { threshold: 0.1 });
-    faders.forEach(el => fadeObserver.observe(el));
+      /* === Fade-in on scroll === */
+      const faders = document.querySelectorAll('.fade-in');
+      const fadeObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); } });
+      }, { threshold: 0.1 });
+      faders.forEach(el => fadeObserver.observe(el));
+    })();
   </script>
 
 </body>
