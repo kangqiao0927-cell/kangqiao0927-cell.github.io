@@ -6,159 +6,249 @@
   <title>黄康桥 — 个人主页</title>
   <style>
     /* === 全局 === */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "PingFang SC", sans-serif;
       color: #1a1a1a;
-      background: #fafafa;
-      line-height: 1.7;
+      background: #fafaf8;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
     }
-    a { color: #2563eb; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a { color: #1a1a1a; text-decoration: none; transition: color 0.2s; }
+    a:hover { color: #d97706; }
 
-    /* === 导航 === */
-    nav {
-      position: fixed; top: 0; width: 100%; z-index: 100;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid #e5e7eb;
-      padding: 0 24px;
+    /* === 左侧导航 === */
+    .sidebar {
+      position: fixed; top: 0; left: 0; bottom: 0;
+      width: 200px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 48px 40px;
+      z-index: 100;
     }
-    nav .inner {
-      max-width: 720px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 52px;
+    .sidebar .logo {
+      font-size: 22px; font-weight: 700; letter-spacing: -0.5px;
     }
-    nav .logo { font-weight: 700; font-size: 18px; }
-    nav .nav-links { display: flex; gap: 20px; font-size: 15px; }
-    nav .nav-links a { color: #555; }
-    nav .nav-links a:hover { color: #1a1a1a; }
+    .sidebar .nav-list {
+      list-style: none; display: flex; flex-direction: column; gap: 6px;
+    }
+    .sidebar .nav-list li { position: relative; }
+    .sidebar .nav-list a {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; letter-spacing: 0.5px; color: #a8a29e;
+      padding: 6px 0; transition: color 0.2s;
+    }
+    .sidebar .nav-list a:hover { color: #1a1a1a; }
+    .sidebar .nav-list a.active { color: #1a1a1a; }
+    .sidebar .nav-list a .num { font-size: 11px; min-width: 20px; }
+    .sidebar .nav-list a .line {
+      display: inline-block; width: 24px; height: 1px; background: #d6d3d1; transition: all 0.2s;
+    }
+    .sidebar .nav-list a.active .line { width: 48px; background: #78716c; }
+    .sidebar .socials {
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .sidebar .socials a {
+      font-size: 13px; color: #a8a29e; transition: color 0.2s;
+    }
+    .sidebar .socials a:hover { color: #1a1a1a; }
 
-    /* === 区块 === */
-    section {
-      padding: 64px 24px;
+    /* === 主内容区 === */
+    .main {
+      margin-left: 200px;
+      max-width: 680px;
+      padding: 0 40px 80px;
     }
-    .container {
-      max-width: 720px; margin: 0 auto;
+
+    /* === 区块通用 === */
+    section { padding: 96px 0; }
+    .section-number {
+      font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+      color: #a8a29e; margin-bottom: 12px; font-weight: 500;
     }
     .section-title {
-      font-size: 22px; font-weight: 700;
-      margin-bottom: 16px;
-    }
-    .section-subtitle {
-      color: #666; font-size: 15px; margin-bottom: 28px;
+      font-size: 28px; font-weight: 700; letter-spacing: -0.5px;
+      margin-bottom: 32px; color: #1a1a1a;
     }
 
-    /* === 英雄区 === */
-    #hero {
-      padding-top: 140px;
-      padding-bottom: 80px;
-    }
-    #hero h1 {
-      font-size: 40px; font-weight: 800; margin-bottom: 8px;
-      letter-spacing: -1px;
-    }
+    /* === Hero === */
+    #hero { padding-top: 140px; padding-bottom: 64px; }
+    #hero h1 { font-size: 44px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.2; margin-bottom: 16px; }
     #hero .tagline {
-      font-size: 18px; color: #555; margin-bottom: 24px;
+      font-size: 17px; color: #78716c; margin-bottom: 36px; max-width: 460px; line-height: 1.6;
     }
-    #hero .social-links { display: flex; gap: 16px; flex-wrap: wrap; }
-    #hero .social-links a {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 8px 16px;
-      border: 1px solid #ddd; border-radius: 20px;
-      font-size: 14px; color: #333;
-      transition: all 0.15s;
+    #hero .hero-links { display: flex; gap: 14px; flex-wrap: wrap; }
+    #hero .hero-links a {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 10px 20px;
+      border: 1px solid #d6d3d1; border-radius: 24px;
+      font-size: 14px; color: #44403c;
+      transition: all 0.2s;
     }
-    #hero .social-links a:hover {
-      background: #1a1a1a; color: #fff; border-color: #1a1a1a;
+    #hero .hero-links a:hover {
+      background: #1c1917; color: #fafaf8; border-color: #1c1917;
       text-decoration: none;
     }
 
     /* === 关于 === */
-    #about p { color: #444; margin-bottom: 12px; }
+    #about .about-text { max-width: 600px; }
+    #about p { color: #44403c; margin-bottom: 14px; font-size: 15px; }
+
+    /* === 学历（紧凑卡片） === */
+    .edu-card {
+      padding: 20px 24px; background: #f3f0eb; border-radius: 10px; max-width: 480px;
+    }
+    .edu-card .school { font-weight: 600; font-size: 16px; margin-bottom: 2px; }
+    .edu-card .degree { color: #78716c; font-size: 14px; margin-bottom: 4px; }
+    .edu-card .note { color: #a8a29e; font-size: 13px; }
+
+    /* === 技能 === */
+    .skill-list { display: flex; flex-wrap: wrap; gap: 10px; max-width: 540px; }
+    .skill-tag {
+      font-size: 13px; padding: 7px 16px;
+      background: #f3f0eb; border-radius: 20px; color: #44403c;
+      font-weight: 500;
+    }
 
     /* === 项目卡片 === */
-    .project-grid { display: grid; gap: 20px; }
+    .project-grid { display: grid; gap: 16px; }
     .project-card {
-      background: #fff;
-      border: 1px solid #e5e7eb; border-radius: 12px;
       padding: 24px;
-      transition: box-shadow 0.15s;
+      border: 1px solid #e7e5e4; border-radius: 10px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      cursor: default;
     }
-    .project-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-    .project-card h3 { font-size: 17px; margin-bottom: 6px; }
-    .project-card p { color: #555; font-size: 14px; }
-    .project-card .tags {
-      margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;
+    .project-card:hover {
+      border-color: #d6d3d1; box-shadow: 0 1px 8px rgba(0,0,0,0.04);
     }
+    .project-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+    .project-card p { color: #78716c; font-size: 14px; margin-bottom: 12px; }
+    .project-card .tags { display: flex; gap: 8px; flex-wrap: wrap; }
     .project-card .tags span {
-      font-size: 12px; padding: 3px 10px;
-      background: #f3f4f6; border-radius: 10px; color: #555;
+      font-size: 11px; padding: 3px 10px;
+      background: #f3f0eb; border-radius: 10px; color: #78716c;
+      letter-spacing: 0.3px;
+    }
+
+    /* === 博客 === */
+    .blog-placeholder {
+      padding: 32px 24px; border: 1px dashed #d6d3d1; border-radius: 10px;
+      text-align: center; color: #a8a29e; font-size: 14px;
     }
 
     /* === 联系 === */
     #contact .contact-item {
       display: flex; align-items: center; gap: 10px;
-      padding: 10px 0; color: #444;
+      padding: 6px 0; color: #44403c; font-size: 15px;
     }
 
     /* === 页脚 === */
     footer {
-      text-align: center; padding: 32px 24px;
-      font-size: 13px; color: #999;
-      border-top: 1px solid #e5e7eb;
+      padding: 24px 0; font-size: 12px; color: #c4bfba;
+      border-top: 1px solid #e7e5e4;
     }
 
+    /* === 视口淡入 === */
+    .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
     /* === 响应式 === */
-    @media (max-width: 600px) {
-      #hero h1 { font-size: 30px; }
-      nav .nav-links { gap: 12px; font-size: 14px; }
+    @media (max-width: 768px) {
+      .sidebar {
+        position: relative; width: 100%; flex-direction: row; align-items: center;
+        padding: 16px 24px; border-bottom: 1px solid #e7e5e4;
+      }
+      .sidebar .nav-list { flex-direction: row; gap: 16px; }
+      .sidebar .nav-list a .num { display: none; }
+      .sidebar .nav-list a .line { display: none; }
+      .sidebar .socials { display: none; }
+      .main { margin-left: 0; max-width: 100%; padding: 0 24px; }
+      #hero { padding-top: 56px; }
+      #hero h1 { font-size: 32px; }
+      section { padding: 64px 0; }
     }
   </style>
 </head>
 <body>
 
-  <!-- 导航 -->
-  <nav>
-    <div class="inner">
-      <span class="logo">黄康桥</span>
-      <div class="nav-links">
-        <a href="#about">关于</a>
-        <a href="#projects">项目</a>
-        <a href="#contact">联系</a>
-      </div>
+  <!-- 左侧导航 -->
+  <nav class="sidebar">
+    <div class="logo">黄康桥</div>
+    <ul class="nav-list">
+      <li><a href="#about" data-section="about"><span class="num">01</span><span class="line"></span>关于</a></li>
+      <li><a href="#education" data-section="education"><span class="num">02</span><span class="line"></span>学历</a></li>
+      <li><a href="#skills" data-section="skills"><span class="num">03</span><span class="line"></span>技能</a></li>
+      <li><a href="#projects" data-section="projects"><span class="num">04</span><span class="line"></span>项目</a></li>
+      <li><a href="#blog" data-section="blog"><span class="num">05</span><span class="line"></span>博客</a></li>
+      <li><a href="#contact" data-section="contact"><span class="num">06</span><span class="line"></span>联系</a></li>
+    </ul>
+    <div class="socials">
+      <a href="https://github.com/kangqiao0927-cell" target="_blank">GitHub</a>
+      <a href="mailto:kangqiao0927@gmail.com">Email</a>
     </div>
   </nav>
 
-  <!-- 英雄区 -->
-  <section id="hero">
-    <div class="container">
-      <h1>嘿，我是黄康桥 👋</h1>
-      <p class="tagline">水资源工程研究者 · 爱好写代码与生成地图</p>
-      <div class="social-links">
+  <!-- 主内容 -->
+  <main class="main">
+
+    <!-- Hero -->
+    <section id="hero" class="fade-in">
+      <h1>黄康桥</h1>
+      <p class="tagline">水资源工程研究者，用优化、随机模拟和代码处理气候变化下的灌溉决策问题。</p>
+      <div class="hero-links">
         <a href="https://github.com/kangqiao0927-cell" target="_blank">GitHub</a>
         <a href="mailto:kangqiao0927@gmail.com">Email</a>
-        <!-- 再加别的链接 -->
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 关于 -->
-  <section id="about">
-    <div class="container">
+    <!-- 01 关于 -->
+    <section id="about" class="fade-in">
+      <div class="section-number">01. 关于</div>
       <h2 class="section-title">关于我</h2>
-      <p>我是一名水资源工程方向的研究生，研究方向聚焦于<strong>灌区水资源优化配置与调度</strong>。日常工作围绕分布鲁棒优化（DRO）、模型预测控制（MPC）和随机水文模拟展开，致力于在气候变化与不确定性下为灌溉系统寻找稳健的决策方案。</p>
-      <p>技术上常用 Python 科学计算栈（NumPy、SciPy、Pandas、CVXPY）做建模与优化，用 Scikit-learn 和 TensorFlow 处理水文预测与天气生成，用 QGIS 和 ERA5 再分析数据做空间分析与制图。习惯在 Jupyter Notebook 中完成从数据下载到结果可视化的全流程。</p>
-      <p>研究之余，也在折腾一个叫 <a href="https://github.com/kangqiao0927-cell" target="_blank">Earth Online</a> 的副项目——用程序化生成模拟板块构造、气候、洋流与生物群落，画一些幻想风格的地图。这件事让我保持对编程和可视化的热情。</p>
-    </div>
-  </section>
+      <div class="about-text">
+        <p>我是一名水资源工程方向的研究生，研究方向聚焦于<strong>灌区水资源优化配置与调度</strong>。日常工作围绕分布鲁棒优化（DRO）、模型预测控制（MPC）和随机水文模拟展开，致力于在气候变化与不确定性下为灌溉系统寻找稳健的决策方案。</p>
+        <p>技术上常用 Python 科学计算栈（NumPy、SciPy、Pandas、CVXPY）做建模与优化，用 Scikit-learn 和 TensorFlow 处理水文预测与天气生成，用 QGIS 和 ERA5 再分析数据做空间分析与制图。习惯在 Jupyter Notebook 中完成从数据下载到结果可视化的全流程。</p>
+        <p>研究之余，也在折腾一个叫 Earth Online 的副项目——用程序化生成模拟板块构造、气候、洋流与生物群落，画一些幻想风格的地图。这件事让我保持对编程和可视化的热情。</p>
+      </div>
+    </section>
 
-  <!-- 项目 -->
-  <section id="projects">
-    <div class="container">
+    <!-- 02 学历 -->
+    <section id="education" class="fade-in">
+      <div class="section-number">02. 学历</div>
+      <h2 class="section-title">学历</h2>
+      <div class="edu-card">
+        <div class="school">硕士在读 · 水利工程</div>
+        <div class="degree">研究方向：灌区水资源优化配置与调度</div>
+        <div class="note">核心课程：高等水文学、水资源系统分析、CEE434 等</div>
+      </div>
+    </section>
+
+    <!-- 03 技能 -->
+    <section id="skills" class="fade-in">
+      <div class="section-number">03. 技能</div>
+      <h2 class="section-title">技能</h2>
+      <div class="skill-list">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">DRO / CVaR</span>
+        <span class="skill-tag">MPC</span>
+        <span class="skill-tag">CVXPY</span>
+        <span class="skill-tag">NumPy / SciPy</span>
+        <span class="skill-tag">Scikit-learn</span>
+        <span class="skill-tag">TensorFlow</span>
+        <span class="skill-tag">ERA5 气候数据</span>
+        <span class="skill-tag">AquaCrop</span>
+        <span class="skill-tag">QGIS</span>
+        <span class="skill-tag">Jupyter</span>
+        <span class="skill-tag">Git</span>
+      </div>
+    </section>
+
+    <!-- 04 项目 -->
+    <section id="projects" class="fade-in">
+      <div class="section-number">04. 项目</div>
       <h2 class="section-title">项目作品</h2>
-      <p class="section-subtitle">做过的一些东西，持续更新中。</p>
       <div class="project-grid">
+
         <div class="project-card">
           <h3>灌区优化调度 — DRO 三层决策框架</h3>
           <p>面向淠史杭灌区构建 Wasserstein-DRO + CVaR 作物结构优化 → 水权分配 → MPC 滚动灌溉调度的三层框架，在气候变化不确定性下寻求稳健用水策略。</p>
@@ -166,29 +256,72 @@
             <span>DRO</span><span>CVaR</span><span>MPC</span><span>Python</span><span>CVXPY</span>
           </div>
         </div>
-<div class="project-card">
+
+        <div class="project-card">
           <h3>随机天气生成器 — ResDDPM</h3>
-          <p>融合 SARIMA、跳跃扩散与残差去噪扩散概率模型（ResDDPM），生成未来气候情景（2020-2070）的日尺度天气序列，用于驱动水文模拟。</p>
+          <p>融合 SARIMA、跳跃扩散与残差去噪扩散概率模型（ResDDPM），生成未来气候情景（2020–2070）的日尺度天气序列，用于驱动水文模拟。</p>
           <div class="tags">
             <span>ResDDPM</span><span>SARIMA</span><span>TensorFlow</span><span>Keras</span>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- 联系 -->
-  <section id="contact">
-    <div class="container">
+        <div class="project-card">
+          <h3>Earth Online — 程序化世界生成</h3>
+          <p>用 NumPy/SciPy 从零模拟板块构造、气候带、洋流与河流侵蚀，渲染羊皮纸风格的幻想地图。一个保持编程热情的副项目。</p>
+          <div class="tags">
+            <span>NumPy</span><span>Numba</span><span>Matplotlib</span><span>Canvas</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 05 博客 -->
+    <section id="blog" class="fade-in">
+      <div class="section-number">05. 博客</div>
+      <h2 class="section-title">博客</h2>
+      <div class="blog-placeholder">
+        文章整理中，内容将来自朋友圈文字和思考笔记。<br>即将接入 Notion，敬请期待。
+      </div>
+    </section>
+
+    <!-- 06 联系 -->
+    <section id="contact" class="fade-in">
+      <div class="section-number">06. 联系</div>
       <h2 class="section-title">联系我</h2>
       <div class="contact-item">📧 kangqiao0927@gmail.com</div>
       <div class="contact-item">🐙 github.com/kangqiao0927-cell</div>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    &copy; 2026 黄康桥 &middot; Hosted on GitHub Pages
-  </footer>
+    <footer>
+      &copy; 2026 黄康桥 · Design inspired by Brittany Chiang
+    </footer>
+
+  </main>
+
+  <script>
+    /* === Scroll Spy === */
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.sidebar .nav-list a');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('data-section') === entry.target.id);
+          });
+        }
+      });
+    }, { rootMargin: '-50% 0px -45% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+
+    /* === Fade-in on scroll === */
+    const faders = document.querySelectorAll('.fade-in');
+    const fadeObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    faders.forEach(el => fadeObserver.observe(el));
+  </script>
 
 </body>
 </html>
