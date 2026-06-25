@@ -67,15 +67,13 @@
       background: var(--border); transition: all 0.2s;
     }
     .sidebar .nav-list a.active .line { width: 48px; background: var(--accent); }
-    .sidebar .avatar {
-      margin-top: 20px;
-    }
     .sidebar .avatar img {
       width: 64px; height: 64px;
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid var(--border-light);
     }
+    .sidebar .logo { margin-top: 16px; }
     .sidebar .socials {
       display: flex; flex-direction: column; gap: 8px;
     }
@@ -233,10 +231,10 @@
 
   <!-- 左侧导航 -->
   <nav class="sidebar">
-    <div class="logo">黄康桥</div>
     <div class="avatar">
       <img src="弥豆子.jpg" alt="头像" />
     </div>
+    <div class="logo">黄康桥</div>
     <ul class="nav-list">
       <li><a href="#about" data-section="about"><span class="num">01</span><span class="line"></span>关于</a></li>
       <li><a href="#education" data-section="education"><span class="num">02</span><span class="line"></span>学历</a></li>
