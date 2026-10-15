@@ -468,7 +468,7 @@
         sourceEl.textContent = post.source;
         dateEl.textContent = post.date || '';
         titleEl.textContent = post.title;
-        contentEl.textContent = post.content.slice(0, 12).join('\n') + (post.content.length > 12 ? '\n……' : '');
+        contentEl.textContent = post.content.join('\n');
         countEl.textContent = '混合内容池 · ' + randomPosts.length + ' 条';
       }
 
