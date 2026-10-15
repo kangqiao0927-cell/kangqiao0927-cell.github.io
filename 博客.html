@@ -43,7 +43,7 @@ function showRandom(){
   sourceEl.textContent=post.source;
   dateEl.textContent=post.date||'';
   titleEl.textContent=post.title;
-  contentEl.textContent=post.content.join('\\n');
+  contentEl.textContent=post.content.join('\n');
   countEl.textContent='混合内容池 · '+posts.length+' 条';
 }
 nextEl.addEventListener('click',showRandom);
